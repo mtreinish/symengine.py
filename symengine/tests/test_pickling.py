@@ -1,4 +1,5 @@
 from symengine import symbols, sin, sinh, have_numpy, have_llvm, cos, Symbol
+from symengine.lib.symengine_wrapper import load_basic, save_basic
 from symengine.test_utilities import raises
 import pickle
 import unittest
@@ -11,6 +12,12 @@ def test_basic():
     expr2 = pickle.loads(s)
     assert expr == expr2
 
+def test_basic_direct():
+    x, y, z = symbols('x y z')
+    expr = sin(cos(x + y)/z)**2
+    s = save_basic(expr)
+    expr2 = load_basic(s)
+    assert expr == expr2
 
 class MySymbolBase(Symbol):
     def __init__(self, name, attr):

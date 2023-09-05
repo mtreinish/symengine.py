@@ -829,11 +829,6 @@ cdef list vec_pair_to_list(symengine.vec_pair& vec):
         result.append((c2py(a), c2py(b)))
     return result
 
-
-def load_basic(bytes s):
-    return c2py(symengine.wrapper_loads(s))
-
-
 repr_latex=[False]
 
 cdef class Basic(object):
@@ -1223,6 +1218,14 @@ cdef class Basic(object):
         d = collections.defaultdict(int)
         d[self] = 1
         return d
+
+
+def load_basic(bytes s):
+    return c2py(symengine.wrapper_loads(s))
+
+
+cpdef save_basic(Basic basic):
+    return symengine.wrapper_dumps(basic)
 
 
 def series(ex, x=None, x0=0, n=6, as_deg_coef_pair=False):
