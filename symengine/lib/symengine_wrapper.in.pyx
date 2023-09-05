@@ -833,6 +833,9 @@ cdef list vec_pair_to_list(symengine.vec_pair& vec):
 def load_basic(bytes s):
     return c2py(symengine.wrapper_loads(s))
 
+def save_basic(basic):
+    return symengine.save_basic(basic)
+
 
 repr_latex=[False]
 
