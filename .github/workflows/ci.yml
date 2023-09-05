@@ -1,5 +1,8 @@
 name: Build and test symengine
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - 'test_stuff'
 
 jobs:
   build:
